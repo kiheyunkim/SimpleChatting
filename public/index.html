@@ -4,25 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/chatting.js"></script>
     <title>Chatting</title>
-    <script>
-        const socket = io();
-        
-        socket.on('connection',()=>{
-            console.log('connected');
-        });
-
-        let sendMessage = (message)=>{
-            socket.emit('message', message);
-        };
-
-        socket.on('recv',(packet)=>{
-            console.log(packet);
-        });
-
-    </script>
 </head>
 <body>
+    <!-- 채팅창 -->
+    <!-- 입력창 --><!--전송버튼(Focus 반드시!!!)-->
+    <!-- 관리자용 채팅창? -->
+
+    <!-- 아래는 테스트용 메세지 전달-->
     <button onclick="sendMessage('hi')">버튼</button>
 </body>
 </html>

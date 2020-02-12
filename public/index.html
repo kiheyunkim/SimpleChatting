@@ -1,19 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewprt" content="width=device-width, initial-scale=1.0">
+	<title>Chatting</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="js/chatting.js"></script>
-    <title>Chatting</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
 </head>
 <body>
-    <!-- 채팅창 -->
-    <!-- 입력창 --><!--전송버튼(Focus 반드시!!!)-->
-    <!-- 관리자용 채팅창? -->
-
-    <!-- 아래는 테스트용 메세지 전달-->
-    <button onclick="sendMessage('hi')">버튼</button>
-</body>
+	<section id="container">
+		<!-- 메인 채팅 -->
+		<article class="main">
+			<!-- 채팅창 -->
+			<div class="box">
+				<div id="text" class="chat"></div>
+			</div>
+			<!-- 입력창 -->
+			<div class="saying">
+				<input type = "text" name ='input' placeholder="내용을 입력하세요" onfocus="this.placeholder=''" ><!-- 
+			 --><button>send</button><!-- 전송버튼 -->	
+			</div>
+			<!-- 관리자용 채팅창? -->
+		</article>
+		<!-- 참여 목록 -->
+		<article class="slide">
+			<!-- 참여자 검색 -->
+			<div class="search">
+				<input type="text" name ='input' placeholder="참여자 검색" onfocus="this.placeholder=''" >
+			</div>
+			<!-- 참여자 목록(오름차순) -->
+			<div class="talkerlist">
+				<div id="list" class="talker"></div>
+			</div>
+		</article>
+		<!-- 아래는 테스트용 메세지 전달 -->
+		<button onclick="sendMessage('hi')">버튼</button>
+	</section>
 </html>

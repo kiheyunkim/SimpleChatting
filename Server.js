@@ -15,6 +15,8 @@ http.listen(3001,()=>{
 
 io.on('connection',(socket)=>{
     console.log(socket.id + ': random user connected');
+    io.emit('Join',{alert:socket.id});//접속 통보
+
     socket.on('message',(packet)=>{
         console.log(packet);
         io.emit('message',packet)

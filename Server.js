@@ -1,30 +1,33 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-let io = require('socket.io')(http);
+const io = require('socket.io')(http);
 
+const Router = require('./Router/route');
+const nameMaker = require('./Controller/nameChecker');
+
+//Set static
 app.use(express.static(__dirname + '/public'));
 
-app.get('/',(request,response)=>{
-    response.redirect('/index.html');
+//Set Router
+app.use('/', Router);
+
+io.on('connection',(socket)=>{
+    socket.socketNick = nameMaker.GetName();
+    console.log(socket.handshake.address + ':connected / id:' + socket.socketNick);
+    io.emit('Join', socket.socketNick);//접속 전체 통보
+    
+    socket.on('Msg',(message)=>{ //일반 메세지 전체 통보
+        io.emit('Msg',{nick:socket.socketNick, msg:message});
+    });
+
+    socket.on('disconnect',(reason)=>{//접속 종료 전체 통보
+        nameMaker.RemoveName(socket.socketNick);
+        io.emit("Exit",socket.socketNick);
+        console.log('reason: '+ reason + " disconnected " + socket.id);
+    });
 });
 
 http.listen(3001,()=>{
     console.log('Chatting Server Open');
 })
-
-io.on('connection',(socket)=>{
-    console.log(socket.id + ': random user connected');
-    io.emit('Join',{alert:socket.id});//접속 통보
-
-    socket.on('message',(packet)=>{
-        console.log(packet);
-        io.emit('message',packet)
-    });
-
-    socket.on('disconnect',(reason)=>{
-        console.log('reason: '+ reason + " disconnected " + socket.id);
-    });
-});
-
-

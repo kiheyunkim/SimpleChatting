@@ -5,7 +5,7 @@ socket.on('connection',()=>{
 });
 
 let sendMessage = (message)=>{
-    socket.emit('message', message);
+    socket.emit('Msg', message);
     // -> 전체에 메세지 보냄
 };
 
@@ -21,26 +21,34 @@ socket.on('reconnect_attempt',(attemptCount)=>{
         return;
     }
     // -> 접속 재시도를 말함
-    console.log('Trying to Connecting :'+ attemptCount);
+    console.log('Trying to Connecting! count:'+ attemptCount);
 });
 
 //Normal Message
-socket.on('Message',(packet)=>{
+socket.on('Msg',(packet)=>{
     // -> 일반 메세지 전송
-    console.log(packet)
+    console.log(packet.nick + ': ' + packet.msg);
 })
 
+
+socket.on('Join',(userName)=>{
+    console.log(userName +'가 입장했습니다');
+});
+
+socket.on('Exit',(userName)=>{
+    console.log(userName +'가 퇴장했습니다');
+});
 //Admin Message
+
+/* 
 socket.on('Broadcast',(packet)=>{
     // -> 어드민 메세지
     console.log(packet);
 });
 
-/* 
-    추가할 내용
+추가할 내용
 
 1. 어드민 강퇴기능?
-2. 각자의 식별자를 찾기.
-3. 퇴장 및 접속
-
+2. 각자의 식별자를 갖기. -> 완료
+3. 퇴장 및 접속 -> 완료
 */

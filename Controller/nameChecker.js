@@ -10,13 +10,15 @@ let GetName = ()=>{
         newName = uniqueNamesGenerator(nameConfig);
     }
 
-    nameArray.push(nameArray);
+    nameArray.push(newName);
 
     return newName;
 };
 
 let RemoveName = (name)=>{
-    nameArray.filter(element => element===name);
+    nameArray = nameArray.filter(element => element!==name);
 };
 
-module.exports={GetName, RemoveName};
+let GetList = ()=> nameArray;
+
+module.exports={GetName, RemoveName, GetList};

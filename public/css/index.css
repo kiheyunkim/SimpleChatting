@@ -93,6 +93,9 @@ header{
 .snack .quit{
   display: none;
 }
+.snack .reconnectFail{
+  display: none;
+}
 .snackshow{
   display: block !important;
   animation: spanslide 2s ease-out;

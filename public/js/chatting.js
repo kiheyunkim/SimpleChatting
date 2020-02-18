@@ -1,6 +1,7 @@
 let sendMessage;
 let max;
 
+
 let AdjustCaretPoint =()=>{
     let height = $("#text").height();
     if(height > max) {
@@ -9,7 +10,17 @@ let AdjustCaretPoint =()=>{
 }
 
 $(document).ready(()=>{
+    let setToast=(type)=>{
+        let target = $(`.snack .${type}`);
+        target.attr('class','snackshow');
+    
+        window.setTimeout(() => {
+            target.attr('class',type);//되돌림
+        },2000);
+    }
+
     const socket = io('/');
+
     max = $(".chat").height();
 
     sendMessage = (message)=>{
@@ -25,22 +36,28 @@ $(document).ready(()=>{
         socket.emit('Msg', message);
     };
     
+    
+
     socket.on('connect',()=>{
+        setToast('connect');
         socket.emit('GetList');
     })
     
     socket.on('disconnect',(reason)=>{  //종료된 그순간 부터 나옴
         console.log('disconnected Reason:',reason);
+        setToast('quit');
         // -> 접속 끊어졌다고 알림
     })
     
     socket.on('reconnect_attempt',(attemptCount)=>{
         if(attemptCount > 5){
             socket.disconnect();        //접속 완전종료
+            setToast('reconnectFail');
             // -> 접속 완전히 종료됨을 알림 -> 재접속 실패.
             return;
         }
         // -> 접속 재시도를 말함
+        setToast('reconnect');
         console.log('Trying to Connecting :'+ attemptCount);
     });
     

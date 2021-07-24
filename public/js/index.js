@@ -1,10 +1,10 @@
 $(document).ready(()=>{
-    $('#sendBttn').click(()=>{
-        sendMessage($('#sendTextBox').val());
-    });
+	$('#sendBttn').click(()=>{
+		sendMessage($('#sendTextBox').val());
+	});
 
-    $('.menu').click(()=>{
-        $(".menu").toggleClass("menuopen");
-        $(".slide").toggleClass("menuopen");
-    });
+	$('.menu').click(()=>{
+		$(".menu").toggleClass("menuopen");
+		$(".slide").toggleClass("menuopen");
+	});
 });

@@ -32,6 +32,7 @@ $(document).ready(() => {
 				</div>
 			`
 		);
+		$('#sendTextBox').val('');
 		adjustCaretPoint();
 		socket.emit('msg', message);
 	};
@@ -116,7 +117,6 @@ $(document).ready(() => {
 	$(document).keyup((event) => {
 		if (event.keyCode === 13) {
 			$('#sendBttn').click();
-			$('#sendTextBox').val('');
 			$('#sendTextBox').focus();
 		}
 	});

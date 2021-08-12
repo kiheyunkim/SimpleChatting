@@ -35,11 +35,13 @@ programming: [김기현](https://github.com/kiheyunkim)
 
 ## feature
 
-1. 채팅자가 접속하면 이름은 램덤하게 생성됩니다.
+1. 채팅자가 접속하면 이름은 랜덤하게 생성됩니다.
     * unique-names-generator 모듈 사용
+    * 영문 단어 랜덤 조합이 기본 형태
 2. 예외 처리
-    * 다른 사용자의 접속해제, 접속, 등에 대해서 실시간으로 반영됩니다.
+    * 다른 사용자의 접속, 접속 해제 등에 대해서 실시간으로 반영
 3. 닉네임 변경 가능
+    - 새로고침 등으로 인한 접속해제 시 설정한 닉네임 초기화
 4. 모바일 화면 지원
 
 ---
@@ -52,6 +54,12 @@ programming: [김기현](https://github.com/kiheyunkim)
 
 ![](./screenshot/src3.PNG)
 
+![](./screenshot/src4.PNG)
+
+<img src="./screenshot/src5.PNG" style="zoom:50%;" /><img src="./screenshot/src6.PNG" style="zoom:50%;" />
+
+
+
 ---
 
 ## DB Scheme
@@ -63,7 +71,7 @@ No Database
 
 ## known issue
 
-1. 검색 구현은 제외됨.
+
 
 ---
 

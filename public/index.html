@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/media.css" media="(max-width:1024px)">
 
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700|Noto+Serif+KR:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 </head>
 <body>
 	<section id="container">
@@ -62,7 +63,33 @@
 				<!-- 참여자 목록(오름차순) -->
 				<div class="talkerlist">
 					<ul id="list">
-						<li class="talker me">me</li>
+						<li class="talker me">
+							<!-- edit_show: 화면 표시 / edit_hide: 화면 숨김  -->
+							<!-- 수정버튼(edit 클래스) 클릭 시 
+								1. nickname_show에 붙은 edit_show 클래스가 edit_hide 클래스로 교체
+								2. nickname_edit에 붙은 edit_hide 클래스가 edit_show 클래스로 교체 -->
+							<!-- 닉네임 입력 후 적용버튼(apply 클래스) 클릭 시
+								1. 입력한 닉네임이 myNick id를 가진 span에 적용
+								2. nickname_edit에 붙은 edit_show 클래스가 edit_hide 클래스로 교체
+								3. nickname_show에 붙은 edit_hide 클래스가 edit_show 클래스로 교체
+								※ 입력이 없거나 스페이스바 공백으로만 입력한 후 클릭 시 "닉네임 입력은 필수입니다." 모달 메세지 추가 -->
+							<!-- 취소버튼(cancel 클래스) 클릭 시 
+								1. nickname_edit에 붙은 edit_show 클래스가 edit_hide 클래스로 교체
+								2. nickname_show에 붙은 edit_hide 클래스가 edit_show 클래스로 교체 -->
+							<div id="nickname_show" class="flex edit_show">
+								<!-- 내 닉네임도 목록에 표시 -->
+								<span id="myNick">nicknamenicknamenicknamenicknamenickname</span>
+								<!--  -->
+								<button id="edit">수정</button>
+							</div>
+							<div id="nickname_edit" class="flex edit_hide">
+								<input type="text" name="editBox" id="edit_box" placeholder="닉네임을 입력하세요">
+								<div id="btn_group">
+									<button id="apply">적용</button>
+									<button id="cancel">취소</button>
+								</div>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>

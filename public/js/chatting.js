@@ -34,7 +34,6 @@ $(document).ready(() => {
 		);
 		$('#sendTextBox').val('');
 		adjustCaretPoint();
-		socket.emit('nickEdit', {newNickname: message})
 		socket.emit('msg', message);
 	};
 

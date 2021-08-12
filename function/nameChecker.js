@@ -21,4 +21,13 @@ let removeName = (name) => {
 
 let getList = () => nameArray;
 
-module.exports = {getName, removeName, getList};
+let replaceUserName = (originalName, newName) => {
+	let index = nameArray.indexOf(originalName);
+	nameArray[index] = newName;
+}
+
+let isNameExist = (newName) => {
+	return nameArray.includes(newName);
+}
+
+module.exports = {getName, removeName, getList, replaceUserName, isNameExist};

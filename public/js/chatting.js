@@ -34,6 +34,7 @@ $(document).ready(() => {
 		);
 		$('#sendTextBox').val('');
 		adjustCaretPoint();
+		socket.emit('nickEdit', {newNickname: message})
 		socket.emit('msg', message);
 	};
 
@@ -103,8 +104,12 @@ $(document).ready(() => {
 		}
 	});
 
-	socket.on('list', (clientList) => {
-		let list = Array.from(clientList);
+	socket.on('existingInfo', (existingInfo) => {
+		$('.talkerlist .you').remove();
+		let list = Array.from(existingInfo.userList);
+		$('#myNick').text(existingInfo.myName);
+
+		console.log(existingInfo);
 		for (let i = 0; i < list.length; ++i) {
 			$('.talkerlist #list').append(
 				`
@@ -114,10 +119,44 @@ $(document).ready(() => {
 		}
 	});
 
+	socket.on('nickEditSuccess', () => {
+		$('#nickname_show').addClass('edit_show')
+		$('#nickname_show').removeClass('edit_hide')
+		$('#nickname_edit').removeClass('edit_show')
+		$('#nickname_edit').addClass('edit_hide')
+
+		socket.emit('getList');
+	});
+
+	socket.on('nickEditFail', () => {
+		alert('이미 존재하는 id입니다');
+	});
+
 	$(document).keyup((event) => {
 		if (event.keyCode === 13) {
 			$('#sendBttn').click();
 			$('#sendTextBox').focus();
 		}
+	});
+
+	$('#btn_group #apply').click(() => {
+		let newNickname = $('#edit_box').val();
+		$('#edit_box').val('');
+		socket.emit('nickEdit', {newNickname});
+	});
+
+	$('#btn_group #cancel').click(() => {
+		$('#edit_box').val('');
+		$('#nickname_show').addClass('edit_show');
+		$('#nickname_show').removeClass('edit_hide');
+		$('#nickname_edit').removeClass('edit_show');
+		$('#nickname_edit').addClass('edit_hide');
+	});
+
+	$('#nickname_show #edit').click(() => {
+		$('#nickname_show').removeClass('edit_show');
+		$('#nickname_show').addClass('edit_hide');
+		$('#nickname_edit').addClass('edit_show');
+		$('#nickname_edit').removeClass('edit_hide');
 	});
 })

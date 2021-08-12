@@ -17,10 +17,10 @@ io.on('connection', (socket) => {
 	socket.socketNick = nameMaker.getName();
 	console.log(socket.handshake.address + ':connected / id:' + socket.socketNick);
 	socket.broadcast.emit('join', socket.socketNick);
-	let list = nameMaker.getList().filter(element => element !== socket.socketNick);
+
 	socket.on('getList', () => {
-		console.log(list);
-		socket.emit('list', list);
+		let list = nameMaker.getList().filter(element => element !== socket.socketNick);
+		socket.emit('existingInfo', {myName: socket.socketNick, userList: list});
 	})
 
 	socket.on('msg', (message) => {
@@ -37,6 +37,20 @@ io.on('connection', (socket) => {
 		nameMaker.removeName(socket.socketNick);
 		io.emit("exit", socket.socketNick);
 		console.log('reason: ' + reason + " disconnected " + socket.id);
+	});
+
+	socket.on('nickEdit', (request) => {
+		let {newNickname} = request;
+
+		if (nameMaker.isNameExist(newNickname)) {
+			socket.emit('nickEditFail');
+		} else {
+			nameMaker.replaceUserName(socket.socketNick, newNickname);
+			socket.socketNick = newNickname;
+
+			socket.emit('nickEditSuccess');
+			socket.broadcast.emit('nickEditSuccess');
+		}
 	});
 });
 

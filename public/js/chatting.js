@@ -140,7 +140,12 @@ $(document).ready(() => {
 
 	$('#btn_group #apply').click(() => {
 		let newNickname = $('#edit_box').val();
+		if (newNickname === '' || newNickname.trim() === '') {
+			alert('닉네임 입력은 필수입니다.');
+			return;
+		}
 		$('#edit_box').val('');
+
 		socket.emit('nickEdit', {newNickname});
 	});
 

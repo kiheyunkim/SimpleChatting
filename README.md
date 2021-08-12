@@ -1,7 +1,5 @@
 # SimpleChatting(With Javascript)
 
-
-
 ## how  to Run?
 
 ```bash
@@ -10,15 +8,16 @@ cd SimpleChatiing
 npm start
 ```
 
-
-
 ---
 
 ## Skills
 
-FE: ![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white), ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E), ![](https://socket.io/css/images/logo.svg)
+FE: ![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+, ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+, ![](https://socket.io/css/images/logo.svg)
 
-BE: ![](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white), ![](https://socket.io/css/images/logo.svg)
+BE: ![](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+, ![](https://socket.io/css/images/logo.svg)
 
 
 
@@ -36,12 +35,12 @@ programming: [김기현](https://github.com/kiheyunkim)
 
 ## feature
 
-> 1. 채팅자가 접속하면 이름은 램덤하게 생성됩니다.
->    * unique-names-generator 모듈 사용
-> 2. 예외 처리
->    * 다른 사용자의 접속해제, 접속, 등에 대해서 실시간으로 반영됩니다. 
-> 3. 모바일 화면 지원
-
+1. 채팅자가 접속하면 이름은 램덤하게 생성됩니다.
+    * unique-names-generator 모듈 사용
+2. 예외 처리
+    * 다른 사용자의 접속해제, 접속, 등에 대해서 실시간으로 반영됩니다.
+3. 닉네임 변경 가능
+4. 모바일 화면 지원
 
 ---
 
@@ -51,7 +50,7 @@ programming: [김기현](https://github.com/kiheyunkim)
 
 ![](./screenshot/src2.PNG)
 
-
+![](./screenshot/src3.PNG)
 
 ---
 
@@ -63,6 +62,8 @@ No Database
 ---
 
 ## known issue
+
+1. 검색 구현은 제외됨.
 
 ---
 
